@@ -15,18 +15,18 @@ $(document).ready(function () {
 
     //event listener for topics to pull in Gifs
     $("#topics").on("click", ".topic", function () {
-        
+
         //allow the "topic" to be clicked again to pull in more gifs
-        if($(this).hasClass("currentTopic")){
+        if ($(this).hasClass("currentTopic")) {
             limit += 5;
         }
-        else{
+        else {
             limit = 10;
         }
 
         //blank out gifs div
         $("#gifs").text("");
-        
+
         //unshade previous active topic and shade new active topic
         $(".currentTopic").removeClass("currentTopic");
         $(this).addClass("currentTopic");
@@ -71,34 +71,38 @@ $(document).ready(function () {
 
     });
 
-   $("#new-animal").on("submit", function(event) {
+    $("#new-animal").on("submit", function (event) {
         event.preventDefault();
 
         var newAnimal = $("#animal-input").val().trim();
-        if(newAnimal == ""){
+        if (newAnimal == "") {
             return false;
         }
         topics.push(newAnimal);
         renderTopics();
 
         $("#animal-input").value("");
-   });
+    });
 
-   //event listener for favorite click
-   $("#gifs").on("click", ".fav", function () {
+    //event listener for favorite click
+    $("#gifs").on("click", ".fav", function () {
         var favoriteGif = $(this).parent().parent();
         $("#favorites").append(favoriteGif);
         $(this).addClass("favorite");
-   });
+    });
 
-   $("#favorites").on("click", ".fav", function() {
-       var unfavoriteGif = $(this).parent().parent();
-       unfavoriteGif.remove();
-   })
+    $("#favorites").on("click", ".fav", function () {
+        var unfavoriteGif = $(this).parent().parent();
+        unfavoriteGif.remove();
+    })
 
-   //event listener to display modal
+    //event listener to display modal
 
-   
+    $("#show-favorites").on("click", function () {
+        $('#exampleModal').modal({
+            show: 'true'
+        });
+    });
 
     /////////////////// FUNCTIONS   //////////////////////////////
     function renderTopics() {
@@ -106,14 +110,14 @@ $(document).ready(function () {
         topics.forEach(function (topic) {
 
             var btn = $("<button class='btn btn-primary topic'>").text(topic).attr("data-topic", topic);
-            if(topic == currentTopic){
+            if (topic == currentTopic) {
                 btn.addClass("currentTopic");
             }
             $("#topics").append(btn);
         });
     }
 
-    
+
 
 
 });
