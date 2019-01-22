@@ -96,13 +96,6 @@ $(document).ready(function () {
         unfavoriteGif.remove();
     })
 
-    //event listener to display modal
-
-    $("#show-favorites").on("click", function () {
-        $('#exampleModal').modal({
-            show: 'true'
-        });
-    });
 
     /////////////////// FUNCTIONS   //////////////////////////////
     function renderTopics() {
